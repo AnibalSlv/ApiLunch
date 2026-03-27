@@ -1,0 +1,67 @@
+.apiCards{
+    display: flex;
+}
+
+.container-card{
+    width: 200px;
+    height: 200px;
+    padding: 20px;
+    margin: 20px;
+    background-color: rgb(40, 44, 85);
+    border: 2px solid rgb(27, 31, 61);
+    border-radius: 10px;
+    box-shadow: -10px 10px 10px rgb(21, 24, 48);
+}
+
+.title-card{
+    font-size: 20px;
+    padding: 0;
+    margin: 5px;
+    color: rgba(154, 120, 255, 0.5);
+}
+
+.state-card{
+    margin-bottom: 0;
+    color: rgb(217, 228, 8);
+}
+
+.body-card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.subtitle-card{
+    color: rgb(168, 167, 167);
+}
+
+.options-card{
+    display: flex;
+    justify-content: space-between;
+}
+
+.options-card button{
+    height: 30px;
+    width: 50px;
+    margin: 0 10px 0 0;
+    border-radius: 5px;
+    border: .5px solid rgb(27, 31, 61);
+}
+
+.options-card button:hover{
+    cursor: pointer;
+}
+
+.logs-card{
+    color: rgb(168, 167, 167);
+    background-color: rgb(48, 54, 101);
+}
+
+.run-card{
+    color: rgb(0, 201, 17);
+    background-color: rgba(0, 128, 0, 0.211);
+}
+
+.stop-card{
+    color: red;
+    background: rgba(129, 0, 0, 0.507);
+}
