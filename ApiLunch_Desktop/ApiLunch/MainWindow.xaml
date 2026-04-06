@@ -9,7 +9,7 @@
         Title="MainWindow" Height="450" Width="800">
         
         <DockPanel>
-            <wv2:WebView2 Name="WebView2"
+            <wv2:WebView2 Name="WebView"
                           Source="http://localhost:5173/"/>
         </DockPanel>
 </Window>

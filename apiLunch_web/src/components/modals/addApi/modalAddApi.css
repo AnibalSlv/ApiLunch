@@ -1,0 +1,84 @@
+.container-modal-addApi{
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, .5);
+    position: absolute;
+    top: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-addApi{
+    width: 50%;
+    height: 50%;
+    padding: 20px;
+    background-color:  rgb(40, 44, 85);
+    border: 5px solid rgb(27, 31, 61);
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow-y: scroll;
+}
+
+.modal-addApi label{
+    justify-content: end;
+    width: 50%;
+    margin: 0;
+    padding: 0;
+
+}
+
+.modal-addApi input{
+    width: 50%;
+    margin: 2.5%;
+    padding: 5px;
+}
+
+.container-btn-modal-addApi{
+    display: flex;
+    margin: 3%;
+}
+
+.btn-save-modal-addApi, .btn-cancel-modal-addApi{
+    width: 100px;
+    height: 30px;
+    margin-right: 6%;
+    transition: .5s;
+}
+
+.btn-cancel-modal-addApi{
+    background-color: transparent;
+    color: red;
+    border: 2px solid red;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(206, 0, 0);
+}
+
+.btn-save-modal-addApi{
+    background-color: rgb(2, 198, 2);
+    color: white;
+    border: 1px solid transparent;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgb(1, 150, 1);
+}
+
+.btn-cancel-modal-addApi:hover, .btn-save-modal-addApi:hover{
+    cursor: pointer;
+    transform: translateY(-5px);
+}
+
+.btn-save-modal-addApi:hover{
+    box-shadow: 0px 5px 10px rgb(0, 103, 0);
+    background-color: transparent;
+    border-color: rgb(2, 198, 2);
+    color: rgb(2, 198, 2);
+}
+
+.btn-cancel-modal-addApi:hover{
+    box-shadow: 0px 5px 10px rgb(137, 0, 0);
+    background-color: red;
+    border-color: transparent;
+    color: white;
+}

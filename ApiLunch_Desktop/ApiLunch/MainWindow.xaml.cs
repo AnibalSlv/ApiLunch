@@ -11,13 +11,22 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using Microsoft.Web.WebView2.Core;
 
+using ApiLunch.Service;
+using ApiLunch.Service.RunApi;
+using Microsoft.Web.WebView2.Wpf;
 namespace ApiLunch;
 
 public partial class MainWindow : Window
 {
+    private GetAddApi _getAddApi; // <-- Si necesita tener valores y no sucede pon
+    // _getAddApi = new GetAddApi(); dentro de mainWindow antes de IntializeWebView()
+
+    private RunApi _runApi = new RunApi();
+    
     public MainWindow()
     {
         InitializeComponent();
+        _getAddApi = new GetAddApi();
         InitializeWebView();
     }
     
@@ -32,12 +41,15 @@ public partial class MainWindow : Window
             UseShellExecute = true
         });
     
-        await Task.Delay(4000); 
+        await Task.Delay(6500); 
     
-        await WebView2.EnsureCoreWebView2Async(null);
-            WebView2.Source = new Uri("http://localhost:5173/");
+        await WebView.EnsureCoreWebView2Async(null);
+        WebView.Source = new Uri("http://localhost:5173/");
+        
             
-        WebView2.WebMessageReceived += OnWebMessageReceived; // Avisa a C# para que cuando Vite envie un msg él lo pueda recibir
+        // TODO Avisa a C# para que cuando Vite envie un msg él lo pueda recibir
+        WebView.WebMessageReceived  += _getAddApi.OnWebMessageReceived;
+        WebView.WebMessageReceived += _runApi.OnWebMessageReceived2;
     }
     
     protected override void OnClosing(System.ComponentModel.CancelEventArgs e)
@@ -49,55 +61,8 @@ public partial class MainWindow : Window
             CreateNoWindow = true,
             UseShellExecute = false
         });
-
         base.OnClosing(e);
     }
-
-    private void OpenFileDialog()
-    {
-        // Configure open file dialog box
-        var dialog = new Microsoft.Win32.OpenFileDialog();
-        dialog.FileName = "*"; // Default file name
-        dialog.DefaultExt = ".exe"; // Default file extension
-        dialog.Filter = "Python Archives|*.exe"; // Filter files by extension
-
-        // Show open file dialog box
-        bool? result = dialog.ShowDialog();
-
-        // Process open file dialog box results
-        if (result == true)
-        {
-            // Open document
-            string filename = dialog.FileName; // ruta
-            Console.WriteLine(filename);
-            
-            // 1. Prepara la información del proceso (para lanzar procesos
-            // Windows pregunta: ¿con qué programa?, ¿qué carpetas?, ¿con qué permisos?)
-            ProcessStartInfo startInfo = new ProcessStartInfo();
-
-            // 2. El "FileName" DEBE ser el ejecutable de Python
-            // Si tienes python en el PATH, solo pon "python". Si no, pon la ruta completa al python.exe
-            startInfo.FileName = $"{filename}"; 
-
-            // 3. Ejecutamos el módulo uvicorn directamente
-            startInfo.Arguments = "-m uvicorn main:app --host 127.0.0.1 --port 8000";
-            startInfo.WorkingDirectory = @"D:\Proyectos\Velo\Server"; // Sin esto no sabe donde está el main a ejecutar 
-            
-            // 4. Inicia el proceso
-            Process.Start(startInfo);
-        }
-    }
     
-    private void OnWebMessageReceived(object sender, CoreWebView2WebMessageReceivedEventArgs e)
-    {
-        // El mensaje llega como un JSON string
-        string jsonString = e.WebMessageAsJson;
-        
-        // MessageBox.Show($"¡Mensaje recibido desde Vite!: {jsonString}");
-
-        if (jsonString.Contains("OpenDialogFile")) 
-        {
-            OpenFileDialog();
-        }   
-    }
+    
 }
