@@ -1,13 +1,13 @@
 ﻿namespace ApiLunch.DataBase;
 using ApiLunch.Dto;
 
-class ListDataBase
+class ListDataBase : IDataBase
 {
     private List<AddApiDto> _listDb = new();
 
-    public void AddDataDb(AddApiDto dto)
+    public void AddDataDb(AddApiDto addApiDto)
     {
-        _listDb.Add(dto);
+        _listDb.Add(addApiDto);
     }
 
     public List<AddApiDto> GetDataDb => _listDb;
