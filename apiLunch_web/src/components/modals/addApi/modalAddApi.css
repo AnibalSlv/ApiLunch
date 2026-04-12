@@ -32,8 +32,42 @@
 
 .modal-addApi input{
     width: 50%;
-    margin: 2.5%;
+    margin: 1%  0 0 0;
     padding: 5px;
+}
+
+.div-flex-modal-addApi{
+    display: grid;
+    grid-template-columns: repeat(1);
+    grid-gap: 0px;
+    width: calc(50% + 10px);
+    margin: 1% 0 0 0;
+    align-items: center;
+}
+
+.div-flex-modal-addApi label{
+    grid-row: 1;
+}
+
+.div-flex-modal-addApi div{
+    grid-column: 1;
+    display: flex;
+    margin: 2.5% 0;
+    width: auto;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.div-flex-modal-addApi div input{
+    width: 60%;
+    margin: 0;
+} 
+
+.div-flex-modal-addApi div button{
+    grid-column: 2 ;
+    grid-row: 1;
+    height: 25px;
+    width: 130px;
 }
 
 .container-btn-modal-addApi{
